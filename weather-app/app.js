@@ -1,8 +1,22 @@
-const request = require("postman-request")
+const geocode = require("./utils/geocode")
+const forecast = require("./utils/forecast")
 
-const url = 'http://api.weatherstack.com/current?access_key=7fac0c6ec4b1192e8fcc5868bd27c622&query=37.8267,-122.4233&units=m';
+const address = process.argv[2]
 
-request({url: url, json: true}, (error, response) => {
-   // console.log(response.body.current)
-   console.log(response.body.current.weather_descriptions[0] + ". A jelenlegi hőmérséklet: " + response.body.current.temperature + " és " +response.body.current.feelslike +" foknak érződik.")
-})
+if(!address) {
+   console.log("Kérlek adj meg egy címet!")
+} else {
+   geocode (address, (error, {latitude, longitude, location} = {}) => {  // alapértelmezett értéke üres objektum
+      if(error) {
+         return console.log(error)
+      }
+   
+      forecast(latitude + "," + longitude, (error, forecastData) => {
+         if(error)  {
+            return console.log(error)
+         }
+         console.log(location)
+          console.log(forecastData)
+      })  
+   })
+}
