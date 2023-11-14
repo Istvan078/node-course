@@ -10,6 +10,7 @@ const forecast = require("./utils/forecast")
 
 
 const app = express()
+const port = process.env.PORT  || 3000 //  a process.env-ben lehet hozzáférni környezeti változókhoz!
 
 //  Út meghatározások az express config-hoz
 const publicDirectoryPath = path.join(__dirname, "../public")
@@ -106,7 +107,7 @@ app.get("*", (req, res) => {  //  * = wirld card character
     })
 })
 
-app.listen(3000, () => {
-    console.log("A szerver a 3000-es porton fut.")
+app.listen(port, () => {
+    console.log(`A szerver a ${port}-es porton fut.`)
 })  //  a szerverkészítés egy aszinkron művelet. a web szerver sosem áll le, csak ha leállítjuk. az a dolga hogy fusson és figyeljen és feldolgozzon bejövő kéréseket.
 
