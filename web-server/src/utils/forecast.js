@@ -11,7 +11,8 @@ const forecast = (geocode, callback) => {
        } else {
           callback(undefined, 
              "Az időjárás " + body.current.weather_descriptions[0]+ ". A hőmérséklet: "
-             + body.current.temperature + " fok. A hőérzet "+ body.current.feelslike + " fok."
+             + body.current.temperature + " fok. A hőérzet "+ body.current.feelslike 
+             + " fok." + "A páratartalom: " + body.current.humidity + "%" + ". A szél erőssége: " + body.current.wind_speed + " km/h."
         )
        }
     })
