@@ -30,7 +30,7 @@ const {label:productLabel, stock, rating = 5} = product  // létrehoz egy label 
 
 // console.log(rating)
 
-const transaction = (type, {label, stock}) => {  //  Ha egy funkciónak az egyik argumentuma objektum, akkor destruktúrálhatjuk inline a paraméter részen
+const transaction = (type, {label, stock = 0} = {}) => {  //  Ha egy funkciónak az egyik argumentuma objektum, akkor destruktúrálhatjuk inline a paraméter részen
     console.log(type, label, stock)
 }
 
