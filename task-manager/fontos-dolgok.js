@@ -137,3 +137,26 @@ task.save().then(() => {
 // }).catch((error) => {
 //     console.log(error)
 // })
+
+/*    user.save().then(()=> {
+        res.status(201).send(user)
+    }).catch((error) => {
+        res.status(400).send(error) */  //  chainelni is lehet
+   // }) 
+
+   app.get("/users", (req,res) => {
+    User.find({}).then((users) => {
+        res.send(users)
+    }).catch((e) => {
+        res.status(500).send()
+    })
+})
+
+User.findById(_id).then((user) => {
+    if(!user) {
+        return res.status(404).send()
+    }
+    res.send(user)
+}).catch((error) => {
+    res.status(500).send()
+})
