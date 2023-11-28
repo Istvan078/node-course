@@ -160,3 +160,13 @@ User.findById(_id).then((user) => {
 }).catch((error) => {
     res.status(500).send()
 })
+
+const bcrypt = require("bcrypt")
+
+const myFunction = async () => {
+    const password = "redgfdgfdg"
+    const hashedPassword = await bcrypt.hash(password, 8)
+
+    const isMatch = await bcrypt.compare("redgfdgfdg", hashedPassword)
+    console.log(isMatch)
+}
